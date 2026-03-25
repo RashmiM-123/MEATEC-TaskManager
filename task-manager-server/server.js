@@ -9,7 +9,7 @@ const SECRET_KEY = 'your_super_secret_jwt_key';
 
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? 'https://your-frontend-project.vercel.app' // Replace with your actual frontend URL
+    ? 'https://meatec-task-manager-rfeq-rho.vercel.app' // Replace with your actual frontend URL
     : 'http://localhost:5173', // Vite local port
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
