@@ -7,8 +7,13 @@ const app = express();
 const PORT = 5000;
 const SECRET_KEY = 'your_super_secret_jwt_key';
 
-app.use(cors());
-app.use(bodyParser.json());
+app.use(cors({
+  origin: process.env.NODE_ENV === 'production' 
+    ? 'https://your-frontend-project.vercel.app' // Replace with your actual frontend URL
+    : 'http://localhost:5173', // Vite local port
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));app.use(bodyParser.json());
 
 // Mock Database
 let tasks = [
@@ -75,6 +80,9 @@ app.delete('/tasks/:id', authenticateToken, (req, res) => {
   res.status(204).send();
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
+  });
+}
+module.exports = app;
