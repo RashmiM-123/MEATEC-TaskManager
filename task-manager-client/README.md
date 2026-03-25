@@ -71,3 +71,38 @@ export default defineConfig([
   },
 ])
 ```
+Frontend (task-manager-client): React, Vite, Tailwind CSS, Lucide Icons.
+
+Formik & Yup: Form state and validation.
+
+Axios: API communication with interceptors.
+
+Backend (task-manager-server): Node.js, Express.
+
+jsonwebtoken: Stateless auth.
+
+bcryptjs: Password hashing.
+
+Testing: Cypress (E2E) and Vitest (Unit).
+
+How to Run Locally
+Backend:
+cd task-manager-server && npm install && npm start
+(Runs on http://localhost:5000)
+Frontend:
+cd task-manager-client && npm install && npm run dev
+(Runs on http://localhost:5173)
+
+How Mocking Works
+Server-Side: Uses in-memory arrays for users and tasks to simulate a database. Data persists as long as the server is running.
+
+Auth Simulation: Generates real JWT tokens upon login, which the Frontend stores in localStorage and attaches to Axios headers.
+
+E2E Testing: Cypress interacts with the live Express server to verify real-world integration between the UI and API.
+
+✅ Testing
+To run the automated test suite:
+
+Start both Client and Server.
+
+In task-manager-client, run: npx cypress open.
